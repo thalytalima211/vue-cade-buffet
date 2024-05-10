@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadê Buffet?</title>
+</head>
+<body>
+    <header>
+        <h1>Cadê Buffet</h1>
+    </header>
+    <div id="app">
+        <h2>Consultar Disponibilidade do Evento</h2>
+        <form @submit.prevent="handleSubmit">
+            <label for="estimated_date">Data Estimada</label>
+            <input type="date" name="estimated_date" v-model="formData.estimated_date">
+            <label for="number_of_guests">Quantidade de Convidados</label>
+            <input type="number" name="number_of_guests" v-model="formData.number_of_guests">
+            <button type="submit">Enviar</button>
+        </form>
+        <div v-if="result">
+            Este evento está disponível! <br>
+            Valor padrão: R$ {{result.default_value}}
+        </div>
+        <div v-if="errors">
+            Confira os erros abaixo:
+            <ul>
+                <li v-for="item in errors"> {{ item }} </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="assets/js/order_disponibility.js"></script>
+</body>
+</html>

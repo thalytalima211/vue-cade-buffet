@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadê Buffet?</title>
+</head>
+<body>
+    <header>
+        <h1>Cadê Buffet</h1>
+    </header>
+    <div id="app">
+        <h2>Dados do buffet</h2>
+        <dl>
+            <dt>Razão social</dt>
+            <dd>{{ buffetData.brand_name }}</dd>
+            <dt>Telefone para contato</dt>
+            <dd>{{ buffetData.number_phone }}</dd>
+            <dt>Email para contato</dt>
+            <dd>{{ buffetData.email }}</dd>
+            <dt>Endereço</dt>
+            <dd>{{ buffetData.full_address }}</dd>
+            <dt>Bairro</dt>
+            <dd>{{ buffetData.neighborhood }}</dd>
+            <dt>Cidade</dt>
+            <dd>{{ buffetData.city }}</dd>
+            <dt>Estado</dt>
+            <dd>{{ buffetData.state }}</dd>
+            <dt>CEP</dt>
+            <dd>{{ buffetData.zip_code }}</dd>
+            <dt>Descrição</dt>
+            <dd>{{ buffetData.description }}</dd>
+            <dt>Métodos de Pagamento</dt>
+            <dd v-for="payment_method in buffetData.payment_methods">{{ payment_method }}</dd>
+        </dl>
+        <h2>Tipos de eventos cadastrados</h2>
+        <div v-for="event_type in eventTypeList">
+            <dl>
+                <dt>ID</dt>
+                <dd>{{ event_type.id }}</dd>
+                <dt>Nome</dt>
+                <dd>{{ event_type.name }}</dd>
+                <dt>Descrição</dt>
+                <dd>{{ event_type.description }}</dd>
+                <dt>Duração Padrão</dt>
+                <dd>{{ event_type.default_duration }} minutos </dd>
+                <dt>Menu</dt>
+                <dd>{{ event_type.menu }}</dd>
+                <dt>Quantidade Mínima de Convidados</dt>
+                <dd>{{ event_type.min_guests }}</dd>
+                <dt>Quantidade Máxima de Convidados</dt>
+                <dd>{{ event_type.max_guests }}</dd>
+                <dt v-if="event_type.offer_drinks">Oferece bebidas alcoólicas</dt>
+                <dt v-if="event_type.offer_decoration">Oferece decoração</dt>
+                <dt v-if="event_type.offer_parking_service">Oferece serviço de estacionamento</dt>
+                <dt>Valor Mínimo</dt>
+                <dd>R$ {{ event_type.min_value }}</dd>
+                <dt>Valor da Hora Extra</dt>
+                <dd>{{ event_type.extra_hour_value }}</dd>
+                <dt>Adicional por Convidado</dt>
+                <dd>{{ event_type.additional_per_guest }}</dd>
+                <dt>Valor Mínimo no Final de Semana</dt>
+                <dd>{{ event_type.weekend_min_value }}</dd>
+                <dt>Valor da Hora Extra no Final de Semana</dt>
+                <dd>{{ event_type.weekend_extra_hour_value }}</dd>
+                <dt>Adicional por Convidado no Final de Semana</dt>
+                <dd>{{ event_type.weekend_additional_per_guest }}</dd>
+            </dl>
+            <a :href="`/order.html?event_type_id=${event_type.id}&buffet_id=${buffetData.id}`">Verificar Disponibilidade do Evento</a>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="assets/js/buffet_details.js"></script>
+</body>
+</html>
