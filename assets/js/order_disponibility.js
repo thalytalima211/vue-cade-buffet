@@ -18,7 +18,7 @@ const app = Vue.createApp({
             let response = await fetch(`http://localhost:3000/api/v1/buffets/${buffet_id}/event_types/${event_type_id}/disponibility?estimated_date=${this.formData.estimated_date}&number_of_guests=${this.formData.number_of_guests}`)
             let data = await response.json()
             if(response.status == 200){
-                this.error = ''
+                this.errors = ''
                 this.result = data 
             }else{
                 console.log(data.errors)

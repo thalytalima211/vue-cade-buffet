@@ -11,7 +11,15 @@
         <h1>Cadê Buffet</h1>
     </header>
     <div id="app">
-        <div v-for="buffet in buffetList">
+        <form @submit.prevent="searchBuffet">
+            <label for="search">Pesquisar Buffet</label>
+            <input type="text" name="search" v-model="searchField">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <div v-if="buffetList.length == 0">
+            Não há buffets cadastrados!
+        </div>
+        <div v-else v-for="buffet in buffetList">
             <a :href="`/buffet.html?id=${buffet.id}`">{{ buffet.brand_name }}</a> <br>
             {{ buffet.city }} {{ buffet.state }}
         </div>
